@@ -1,30 +1,22 @@
 fileFormatVersion: 2
-guid: d635cc340163d4b478c1b57a1acd74be
+guid: fc2ed5f36bb7ddf408a05738eac83ee6
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: MatchlockBody
-    100002: //RootNode
-    100004: MatchlockFrizen
-    100006: MatchlockRamrod
-    100008: MatchlockSerpentine
-    400000: MatchlockBody
-    400002: //RootNode
-    400004: MatchlockFrizen
-    400006: MatchlockRamrod
-    400008: MatchlockSerpentine
-    2300000: MatchlockBody
-    2300002: MatchlockFrizen
-    2300004: MatchlockRamrod
-    2300006: MatchlockSerpentine
-    3300000: MatchlockBody
-    3300002: MatchlockFrizen
-    3300004: MatchlockRamrod
-    3300006: MatchlockSerpentine
-    4300000: MatchlockFrizen
-    4300002: MatchlockSerpentine
-    4300004: MatchlockRamrod
-    4300006: MatchlockBody
+    100000: Camera
+    100002: Cube
+    100004: //RootNode
+    100006: Lamp
+    400000: Camera
+    400002: Cube
+    400004: //RootNode
+    400006: Lamp
+    2300000: Cube
+    2300002: Lamp
+    3300000: Cube
+    3300002: Lamp
+    4300000: Cube
+    4300002: Lamp
     9500000: //RootNode
   materials:
     importMaterials: 1
