@@ -1,23 +1,33 @@
 fileFormatVersion: 2
-guid: 3f74c26e1db483b468456ffa057c67f6
+guid: 676bafc8630d4e34ca6d438745d27577
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: Box
     100002: BoxCover
     100004: //RootNode
+    100006: KeySlot
+    100008: MatchlockBody
     400000: Box
     400002: BoxCover
     400004: //RootNode
+    400006: KeySlot
+    400008: MatchlockBody
     2300000: Box
     2300002: BoxCover
+    2300004: KeySlot
+    2300006: MatchlockBody
     3300000: Box
     3300002: BoxCover
-    4300000: BoxCover
-    4300002: Box
+    3300004: KeySlot
+    3300006: MatchlockBody
+    4300000: KeySlot
+    4300002: BoxCover
+    4300004: Box
+    4300006: MatchlockBody
     9500000: //RootNode
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:

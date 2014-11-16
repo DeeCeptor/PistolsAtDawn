@@ -19,6 +19,7 @@ public class Key : MonoBehaviour {
 		}
 	}
 
+
 	void UnlockGun()
 	{
 		Debug.Log ("Key is in keyhole!");
@@ -29,6 +30,6 @@ public class Key : MonoBehaviour {
 		rigidbody.useGravity = false;
 
 		DraggableObject draggableObj = this.GetComponent<DraggableObject>();
-		draggableObj.enabled = false;
+		draggableObj.draggable = false;
 	}
 }
