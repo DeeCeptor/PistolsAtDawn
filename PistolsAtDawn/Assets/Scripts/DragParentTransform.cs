@@ -17,6 +17,7 @@ public class DragParentTransform : MonoBehaviour
 	public Vector3 scrollDirection = Vector3.up;
 	public Vector3 scrollDirection2 = Vector3.forward;
 
+	private Vector3 defaultGunAngle = new Vector3(90, 0, 180);	// Angle the gun is at when the level starts
 	private bool dragging = false;
 	
 	private GameObject parent;
@@ -124,6 +125,16 @@ public class DragParentTransform : MonoBehaviour
 			{
 				parent.transform.Rotate (scrollDirection * rotationAmount);
 			}
+		}
+	}
+
+
+	void Update()
+	{
+		// Reset the matchlock's orientation if the reset key is set
+		if(Input.GetButtonDown("Reset Gun") && this.gameObject.name == "MatchlockBody")
+		{
+			parent.transform.localEulerAngles = (defaultGunAngle);
 		}
 	}
 }
