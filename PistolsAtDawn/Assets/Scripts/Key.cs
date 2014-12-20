@@ -29,7 +29,7 @@ public class Key : MonoBehaviour {
 		rigidbody.velocity = Vector3.zero;
 		rigidbody.useGravity = false;
 
-		DraggableObject draggableObj = this.GetComponent<DraggableObject>();
-		draggableObj.draggable = false;
+		//DraggableObject draggableObj = this.GetComponent<DraggableObject>();
+		//draggableObj.draggable = false;
 	}
 }
