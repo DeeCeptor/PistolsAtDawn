@@ -13,8 +13,4 @@ public class TextHighlight : MonoBehaviour {
 	void OnMouseExit() {
 		renderer.material.color = Color.white;
 	}
-
-//	void OnMouseDown(){
-//		Camera.main.SendMessage("fadeOut");
-//	}
 }
