@@ -8,8 +8,8 @@ public class AutoScrollText : MonoBehaviour {
 	public float scrollSpeed = 0.1f;
 
 	void OnGUI(){
-		Vector3 t = contentText.rectTransform.position;
-		t.y += scrollSpeed;
-		contentText.rectTransform.position = t;
+		Vector3 pos = contentText.rectTransform.position;
+		pos.y += scrollSpeed;
+		contentText.rectTransform.position = pos;
 	}
 }
