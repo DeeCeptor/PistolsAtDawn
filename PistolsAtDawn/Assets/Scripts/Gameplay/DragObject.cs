@@ -8,6 +8,7 @@ public class DragObject : MonoBehaviour
 	private Vector3 offset;
 
 	private Rigidbody2D rigidbody;		// Our rigidbody
+	private BoxCollider2D ourCollider;
 
 
 	private GameObject hand;			// Hand we may or may not be connected to via a hinge joint
@@ -18,6 +19,7 @@ public class DragObject : MonoBehaviour
 	void Start()
 	{
 		rigidbody = this.GetComponent<Rigidbody2D>();
+		ourCollider = this.GetComponent<BoxCollider2D> ();
 		hand = GameObject.Find("Hand");
 		handRigidbody = hand.GetComponent<Rigidbody2D>();
 	}
@@ -38,7 +40,11 @@ public class DragObject : MonoBehaviour
 		if(hit.collider != null)
 		{
 			Debug.Log ("Target Position: " + hit.point + " " + this.transform.TransformPoint(hit.point));
-			offset = this.transform.TransformPoint(hit.point) - transform.position;
+			offset = ourCollider.center - hit.point;
+
+			//offset = this.transform.TransformPoint(hit.point);
+			Debug.Log ("Target Position: " + offset);
+			offset = offset;
 		}
 
 		BoxCollider2D collider = this.GetComponent<BoxCollider2D>();
@@ -55,7 +61,7 @@ public class DragObject : MonoBehaviour
 		connectingHinge.connectedBody = handRigidbody;
 
 		// Set anchor to offset of current hand position relative to the object.
-		//connectingHinge.anchor = new Vector2(offset.x, offset.y);
+		connectingHinge.anchor = new Vector2(offset.x, offset.y);
 	}
 
 
