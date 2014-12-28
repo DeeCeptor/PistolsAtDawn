@@ -4,16 +4,14 @@ using System.Collections;
 
 public class DragObject : MonoBehaviour 
 {
-	private Vector3 screenPoint;
-	private Vector3 offset;
-
 	private Rigidbody2D rigidbody;		// Our rigidbody
 	private BoxCollider2D ourCollider;
-
 
 	private GameObject hand;			// Hand we may or may not be connected to via a hinge joint
 	private Rigidbody2D handRigidbody;
 	private HingeJoint2D connectingHinge;
+
+	bool dragging = false;
 
 
 	void Start()
@@ -22,53 +20,31 @@ public class DragObject : MonoBehaviour
 		ourCollider = this.GetComponent<BoxCollider2D> ();
 		hand = GameObject.Find("Hand");
 		handRigidbody = hand.GetComponent<Rigidbody2D>();
+
+		connectingHinge = gameObject.AddComponent<HingeJoint2D>();
+		connectingHinge.enabled = false;
 	}
 
 
 	void OnMouseDown() {
 		//rigidbody.velocity = Vector2.zero;
 		//rigidbody.angularVelocity = 0;
-
-		//offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-		offset = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-		//offset = this.transform.localPosition - hand.transform.localPosition;
-		//offset = transform.InverseTransformPoint(offset) - transform.position;
-		//gameObject.transform.localPosition
-
-		RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-
-		if(hit.collider != null)
-		{
-			Debug.Log ("Target Position: " + hit.point + " " + this.transform.TransformPoint(hit.point));
-			offset = ourCollider.center - hit.point;
-
-			//offset = this.transform.TransformPoint(hit.point);
-			Debug.Log ("Target Position: " + offset);
-			offset = offset;
-		}
-
-		BoxCollider2D collider = this.GetComponent<BoxCollider2D>();
-
-
-		//Debug.Log(offset);
-
-		// Create a hinge joint between the hand and this object so object will slowly rotate
-		// around the hinge point
-		//hand.AddComponent("HingeJoint2D");
-		this.gameObject.AddComponent("HingeJoint2D");
-		//connectingHinge = hand.GetComponent<HingeJoint2D>();
-		connectingHinge = this.GetComponent<HingeJoint2D>();
-		connectingHinge.connectedBody = handRigidbody;
+		dragging = true;
 
 		// Set anchor to offset of current hand position relative to the object.
-		connectingHinge.anchor = new Vector2(offset.x, offset.y);
+		Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector3 mouseLocalPosition = Quaternion.Inverse(transform.rotation) * (mouseWorldPosition - transform.position);
+		connectingHinge.enabled = true;
+		//connectingHinge.connectedBody = handRigidbody;
+		connectingHinge.connectedAnchor = mouseWorldPosition;
+		connectingHinge.anchor = mouseLocalPosition;
 	}
 
 
 	void OnMouseUp() 
 	{
-		// Destroy the connecting hinge to let go of this object
-		Destroy(connectingHinge);
+		dragging = false;
+		connectingHinge.enabled = false;
 	}
 
 
@@ -78,5 +54,13 @@ public class DragObject : MonoBehaviour
 		//Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 
 		//rigidbody.MovePosition(curPosition);
+	}
+
+	void Update()
+	{
+		if (dragging)
+		{
+			connectingHinge.connectedAnchor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		}
 	}
 }
