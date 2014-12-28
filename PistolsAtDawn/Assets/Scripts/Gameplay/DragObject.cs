@@ -33,7 +33,12 @@ public class DragObject : MonoBehaviour
 
 		// Set anchor to offset of current hand position relative to the object.
 		Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		Vector3 mouseLocalPosition = Quaternion.Inverse(transform.rotation) * ((mouseWorldPosition - transform.position));
+		Vector3 scale = transform.localScale;
+		Vector3 inverseScale = new Vector3(1 / scale.x, 1 / scale.y, 1 / scale.z);
+		Quaternion inverseRotation = Quaternion.Inverse(transform.rotation);
+		Vector3 offset = mouseWorldPosition - transform.position;
+		Vector3 mouseLocalPosition = Vector3.Scale(inverseScale, inverseRotation * offset);
+
 		connectingHinge.enabled = true;
 		connectingHinge.connectedBody = handRigidbody;
 		//connectingHinge.connectedAnchor = mouseWorldPosition;
