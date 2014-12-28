@@ -27,16 +27,16 @@ public class DragObject : MonoBehaviour
 
 
 	void OnMouseDown() {
-		//rigidbody.velocity = Vector2.zero;
-		//rigidbody.angularVelocity = 0;
+		rigidbody.velocity = Vector2.zero;
+		rigidbody.angularVelocity = 0;
 		dragging = true;
 
 		// Set anchor to offset of current hand position relative to the object.
 		Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		Vector3 mouseLocalPosition = Quaternion.Inverse(transform.rotation) * (mouseWorldPosition - transform.position);
+		Vector3 mouseLocalPosition = Quaternion.Inverse(transform.rotation) * ((mouseWorldPosition - transform.position));
 		connectingHinge.enabled = true;
-		//connectingHinge.connectedBody = handRigidbody;
-		connectingHinge.connectedAnchor = mouseWorldPosition;
+		connectingHinge.connectedBody = handRigidbody;
+		//connectingHinge.connectedAnchor = mouseWorldPosition;
 		connectingHinge.anchor = mouseLocalPosition;
 	}
 
@@ -60,7 +60,7 @@ public class DragObject : MonoBehaviour
 	{
 		if (dragging)
 		{
-			connectingHinge.connectedAnchor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			//connectingHinge.connectedAnchor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		}
 	}
 }
