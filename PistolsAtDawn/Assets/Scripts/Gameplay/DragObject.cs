@@ -26,11 +26,18 @@ public class DragObject : MonoBehaviour
 	}
 
 
-	void OnMouseDown() {
+	void OnMouseDown() 
+	{
+		setOffsetAnchor();
+	}
+	// Anchors this object to the mouse by creating a hinge joint.
+	// The joint is attached to this object exactly where it's being clicked on.
+	public void setOffsetAnchor()
+	{
 		rigidbody.velocity = Vector2.zero;
 		rigidbody.angularVelocity = 0;
 		dragging = true;
-
+		
 		// Set anchor to offset of current hand position relative to the object.
 		Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector3 scale = transform.localScale;
@@ -38,11 +45,23 @@ public class DragObject : MonoBehaviour
 		Quaternion inverseRotation = Quaternion.Inverse(transform.rotation);
 		Vector3 offset = mouseWorldPosition - transform.position;
 		Vector3 mouseLocalPosition = Vector3.Scale(inverseScale, inverseRotation * offset);
-
+		
 		connectingHinge.enabled = true;
 		connectingHinge.connectedBody = handRigidbody;
 		//connectingHinge.connectedAnchor = mouseWorldPosition;
 		connectingHinge.anchor = mouseLocalPosition;
+	}
+	// Attaches an anchor point to the hand at the center of the object
+	public void setCenterAnchor()
+	{
+		rigidbody.velocity = Vector2.zero;
+		rigidbody.angularVelocity = 0;
+		dragging = true;
+
+		connectingHinge.enabled = true;
+		connectingHinge.connectedBody = handRigidbody;
+		//connectingHinge.connectedAnchor = mouseWorldPosition;
+		connectingHinge.anchor = this.transform.position;
 	}
 
 
