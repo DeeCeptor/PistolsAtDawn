@@ -17,10 +17,10 @@ public class SplashScreenDelay : MonoBehaviour {
 
 
 	void Start(){
-		fadeInTargetColor = new Color (guiTexture.color.r, guiTexture.color.g, guiTexture.color.b, 1f);
-		fadeOutTargetColor = new Color(guiTexture.color.r, guiTexture.color.g, guiTexture.color.b, 0f);
-		guiTexture.color = new Color (guiTexture.color.r, guiTexture.color.g, guiTexture.color.b, 0f);
-		guiTexture.pixelInset = new Rect (0f, 0f, Screen.width, Screen.height);
+		fadeInTargetColor = new Color (GetComponent<GUITexture>().color.r, GetComponent<GUITexture>().color.g, GetComponent<GUITexture>().color.b, 1f);
+		fadeOutTargetColor = new Color(GetComponent<GUITexture>().color.r, GetComponent<GUITexture>().color.g, GetComponent<GUITexture>().color.b, 0f);
+		GetComponent<GUITexture>().color = new Color (GetComponent<GUITexture>().color.r, GetComponent<GUITexture>().color.g, GetComponent<GUITexture>().color.b, 0f);
+		GetComponent<GUITexture>().pixelInset = new Rect (0f, 0f, Screen.width, Screen.height);
 	}
 
 	void Update(){
@@ -53,14 +53,14 @@ public class SplashScreenDelay : MonoBehaviour {
 
 	void FadeOut ()
 	{
-		guiTexture.color = Color.Lerp(guiTexture.color, fadeOutTargetColor, fadeSpeed * Time.deltaTime);
+		GetComponent<GUITexture>().color = Color.Lerp(GetComponent<GUITexture>().color, fadeOutTargetColor, fadeSpeed * Time.deltaTime);
 
 		//if texture is clear enough
-		if(guiTexture.color.a <= 0.005f)
+		if(GetComponent<GUITexture>().color.a <= 0.005f)
 		{
 			// clamp color, disable texture
-			guiTexture.color = Color.clear;
-			guiTexture.enabled = false;
+			GetComponent<GUITexture>().color = Color.clear;
+			GetComponent<GUITexture>().enabled = false;
 
 			hasSceneFinished = true;
 		}
@@ -68,12 +68,12 @@ public class SplashScreenDelay : MonoBehaviour {
 
 	public void FadeIn ()
 	{
-		guiTexture.enabled = true;
+		GetComponent<GUITexture>().enabled = true;
 
-		guiTexture.color = Color.Lerp(guiTexture.color, fadeInTargetColor, fadeSpeed * Time.deltaTime);
+		GetComponent<GUITexture>().color = Color.Lerp(GetComponent<GUITexture>().color, fadeInTargetColor, fadeSpeed * Time.deltaTime);
 		
 		// If the texture is faded in enough
-		if(guiTexture.color.a >= 0.98f)
+		if(GetComponent<GUITexture>().color.a >= 0.98f)
 			isSceneStarting = false;
 	}
 }

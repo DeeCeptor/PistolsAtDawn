@@ -25,9 +25,9 @@ public class Key : MonoBehaviour {
 		Debug.Log ("Key is in keyhole!");
 		inLock = true;
 		transform.rotation = Quaternion.identity;
-		rigidbody.angularVelocity = Vector3.zero;
-		rigidbody.velocity = Vector3.zero;
-		rigidbody.useGravity = false;
+		GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+		GetComponent<Rigidbody>().velocity = Vector3.zero;
+		GetComponent<Rigidbody>().useGravity = false;
 
 		//DraggableObject draggableObj = this.GetComponent<DraggableObject>();
 		//draggableObj.draggable = false;
