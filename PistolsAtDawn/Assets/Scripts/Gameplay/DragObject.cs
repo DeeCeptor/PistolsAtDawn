@@ -10,12 +10,14 @@ public class DragObject : MonoBehaviour
 	private GameObject hand;			// Hand we may or may not be connected to via a hinge joint
 	private Rigidbody2D handRigidbody;
 	private HingeJoint2D connectingHinge;
+	private CameraController cameraController;
 
 	bool dragging = false;
 
 
 	void Start()
 	{
+		cameraController = GameObject.Find ("CameraController").GetComponent<CameraController>();
 		rigidbody = this.GetComponent<Rigidbody2D>();
 		ourCollider = this.GetComponent<BoxCollider2D> ();
 		hand = GameObject.Find("Hand");
@@ -39,7 +41,7 @@ public class DragObject : MonoBehaviour
 		dragging = true;
 		
 		// Set anchor to offset of current hand position relative to the object.
-		Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector3 mouseWorldPosition = cameraController.mainCamera.ScreenToWorldPoint(Input.mousePosition);
 		Vector3 scale = transform.localScale;
 		Vector3 inverseScale = new Vector3(1 / scale.x, 1 / scale.y, 1 / scale.z);
 		Quaternion inverseRotation = Quaternion.Inverse(transform.rotation);
@@ -66,6 +68,10 @@ public class DragObject : MonoBehaviour
 
 
 	void OnMouseUp() 
+	{
+		stopDragging ();
+	}
+	public void stopDragging()
 	{
 		dragging = false;
 		connectingHinge.enabled = false;
