@@ -4,6 +4,7 @@ using System.Collections;
 public class RandomSway : MonoBehaviour {
 
 	Vector3 startPos;
+	public int wanderDist = 4;
 
 	void Start () 
 	{
@@ -12,6 +13,6 @@ public class RandomSway : MonoBehaviour {
 	
 	void Update () 
 	{
-		transform.position = (new Vector3(startPos.x + Mathf.PingPong(Time.time, 4), transform.position.y, transform.position.z));
+		transform.position = (new Vector3(startPos.x + Mathf.PingPong(Time.time, wanderDist), transform.position.y, transform.position.z));
 	}
 }
