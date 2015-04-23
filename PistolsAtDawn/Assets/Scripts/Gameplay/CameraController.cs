@@ -6,6 +6,8 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 	public Camera[] cameras;
 	private int currentCameraIndex;
+
+	[HideInInspector]
 	public Camera mainCamera;
 
 	// Use this for initialization

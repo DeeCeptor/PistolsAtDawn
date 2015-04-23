@@ -3,12 +3,10 @@ using System.Collections;
 
 public class DropIntoBarrel : MonoBehaviour {
 
-	// Use this for initialization
 	void Start () {
 	
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
@@ -20,7 +18,11 @@ public class DropIntoBarrel : MonoBehaviour {
 			Debug.Log("Bullet put in barrel");
 			other.gameObject.GetComponent<DragObject>().stopDragging();
 			Destroy (other.gameObject);
-			
+		}
+		else if (other.gameObject.tag == "Powder") 
+		{
+			Debug.Log("Powder in barrel");
+			Destroy (other.gameObject);
 		}
 	}
 }

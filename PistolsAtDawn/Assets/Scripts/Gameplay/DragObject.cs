@@ -31,6 +31,7 @@ public class DragObject : MonoBehaviour
 	void OnMouseDown() 
 	{
 		setOffsetAnchor();
+		//setCenterAnchor ();
 	}
 	// Anchors this object to the mouse by creating a hinge joint.
 	// The joint is attached to this object exactly where it's being clicked on.
