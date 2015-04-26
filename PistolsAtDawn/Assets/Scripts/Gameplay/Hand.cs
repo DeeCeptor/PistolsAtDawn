@@ -10,7 +10,7 @@ public class Hand : MonoBehaviour {
 
 	void Start()
 	{
-		cameraController = GameObject.Find ("CameraController").GetComponent<CameraController>();
+		//cameraController = GameObject.Find ("CameraController").GetComponent<CameraController>();
 		rigidbody = this.GetComponent<Rigidbody2D>();
 	}
 
@@ -20,7 +20,8 @@ public class Hand : MonoBehaviour {
 		//rigidbody.angularVelocity = 0;
 
 		Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1);
-		Vector3 curPosition = cameraController.mainCamera.ScreenToWorldPoint(curScreenPoint) + offset;
+		Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
+			//cameraController.mainCamera.ScreenToWorldPoint(curScreenPoint) + offset;
 		
 		rigidbody.MovePosition(curPosition);
 	}
