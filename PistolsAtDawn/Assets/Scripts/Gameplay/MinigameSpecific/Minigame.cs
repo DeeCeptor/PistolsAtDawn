@@ -7,19 +7,25 @@ public class Minigame : MonoBehaviour {
 
 	void Start () 
 	{
-		controller = GameObject.Find ("MinigameController").GetComponent<MinigameController> ();
+
 	}
 
 
 	public virtual void startGame()
 	{
-		controller.setMinigameUnavailable (this.gameObject);
+		Debug.Log ("Start minigame");
+		controller = GameObject.Find ("MainView").transform.FindChild("MinigameController").GetComponent<MinigameController> ();
+		controller.currentlyPlayingMinigame = this.gameObject;
+		//controller.setMinigameUnavailable (this.gameObject);
 	}
 
 
 	public virtual void endGame()
 	{
-		controller.setMinigameUnavailable (this.gameObject);
+		controller.currentlyPlayingMinigame = null;
+		controller.setMinigameUnavailable (this.gameObject.name);
+		GameObject.Find("Hand").GetComponent<Hand>().stop
+		//this.gameObject.SetActive (false);
 	}
 
 

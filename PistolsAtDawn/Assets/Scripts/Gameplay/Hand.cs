@@ -8,6 +8,8 @@ public class Hand : MonoBehaviour {
 	private Rigidbody2D rigidbody;
 	private CameraController cameraController;
 
+	public bool dragging = false;
+
 	void Start()
 	{
 		//cameraController = GameObject.Find ("CameraController").GetComponent<CameraController>();
@@ -26,4 +28,16 @@ public class Hand : MonoBehaviour {
 		rigidbody.MovePosition(curPosition);
 	}
 
+
+	public void StartDragging()
+	{
+		dragging = true;
+		rigidbody.isKinematic = false;
+
+	}
+	public void StopDragging()
+	{
+		dragging = false;
+		rigidbody.isKinematic = true;
+	}
 }

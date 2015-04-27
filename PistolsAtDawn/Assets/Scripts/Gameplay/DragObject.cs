@@ -10,6 +10,7 @@ public class DragObject : MonoBehaviour
 	private GameObject hand;			// Hand we may or may not be connected to via a hinge joint
 	private Rigidbody2D handRigidbody;
 	private HingeJoint2D connectingHinge;
+	private Hand handScript;
 	//private CameraController cameraController;
 
 	bool dragging = false;
@@ -22,6 +23,7 @@ public class DragObject : MonoBehaviour
 		ourCollider = this.GetComponent<BoxCollider2D> ();
 		hand = GameObject.Find("Hand");
 		handRigidbody = hand.GetComponent<Rigidbody2D>();
+		handScript = hand.GetComponent<Hand> ();
 
 		connectingHinge = gameObject.AddComponent<HingeJoint2D>();
 		connectingHinge.enabled = false;
@@ -30,8 +32,14 @@ public class DragObject : MonoBehaviour
 
 	void OnMouseDown() 
 	{
-		setOffsetAnchor();
+		Debug.Log ("a");
+		startDragging ();
 		//setCenterAnchor ();
+	}
+	void startDragging()
+	{
+		handScript.StartDragging ();
+		setOffsetAnchor();
 	}
 	// Anchors this object to the mouse by creating a hinge joint.
 	// The joint is attached to this object exactly where it's being clicked on.
@@ -74,7 +82,7 @@ public class DragObject : MonoBehaviour
 	}
 	public void stopDragging()
 	{
-		dragging = false;
+		handScript.StopDragging ();
 		connectingHinge.enabled = false;
 	}
 

@@ -36,16 +36,25 @@ public class MinigameController : MonoBehaviour
 	}
 
 
-	public void setMinigameAvailable(GameObject gameIcon)
+	public void setMinigameAvailable(string name)
 	{
-		unavailableMinigames.Remove (gameIcon);
-		availableMinigames.Add (gameIcon);
-		gameIcon.SetActive(true);
+		// Remove icon from list and make it inactive
+		GameObject icon = GameObject.Find ("MinigameIcons").transform.FindChild (name).gameObject;
+		unavailableMinigames.Remove (icon);
+		availableMinigames.Add (icon);
+		icon.SetActive(true);
 	}
-	public void setMinigameUnavailable(GameObject gameIcon)
+	public void setMinigameUnavailable(string name)
 	{
-		availableMinigames.Remove (gameIcon);
-		unavailableMinigames.Add (gameIcon);
-		gameIcon.SetActive(false);
+		Debug.Log ("unavailable " + name);
+
+		// Remove icon from list and make it inactive
+		GameObject icon = GameObject.Find ("MinigameIcons").transform.FindChild (name).gameObject;
+		availableMinigames.Remove (icon);
+		unavailableMinigames.Add (icon);
+		icon.SetActive(false);
+
+		// Make minigame itself inactive
+		GameObject.Find("Minigames").transform.FindChild(name).gameObject.SetActive(false);
 	}
 }

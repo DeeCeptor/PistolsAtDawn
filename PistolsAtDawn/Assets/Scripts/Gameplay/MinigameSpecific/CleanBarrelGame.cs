@@ -3,28 +3,46 @@ using System.Collections;
 
 public class CleanBarrelGame : Minigame 
 {
+	int objectsRemaining = 5;	// Spawns this many objects. All must be removed for game to finish
 
-	void Start () 
-	{
+	void Start () {
 	
+	}
+	void Update () {
+		
 	}
 
 
 	public override void startGame()
 	{
-		Debug.Log ("Clean");
+		// Populate are with random objects
+		Random.Range
+
+
 		base.startGame ();
 	}
 
 
 	public override void endGame()
 	{
+		controller.setMinigameAvailable ("InsertIntoBarrel");
 		base.endGame ();
 	}
 
-	
-	void Update () 
+
+	void OnTriggerEnter2D(Collider2D other) 
 	{
-	
+		if (other.gameObject.tag == "Debris") 
+		{
+			objectsRemaining--;
+			Debug.Log(objectsRemaining);
+			Destroy (other.gameObject);
+
+			// End minigame if all objects have been removed from barrel
+			if (objectsRemaining <= 0)
+			{
+				this.endGame();
+			}
+		}
 	}
 }

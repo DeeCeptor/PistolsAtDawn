@@ -1,15 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DropIntoBarrel : MonoBehaviour {
+public class DropIntoBarrel : Minigame {
 
 	void Start () {
 	
 	}
+
+
+	public override void startGame()
+	{
+		Debug.Log ("Clean");
+		base.startGame ();
+	}
 	
+	
+	public override void endGame()
+	{
+		base.endGame ();
+	}
+
+
 	void Update () {
 	
 	}
+
 
 	void OnTriggerEnter2D(Collider2D other) 
 	{
