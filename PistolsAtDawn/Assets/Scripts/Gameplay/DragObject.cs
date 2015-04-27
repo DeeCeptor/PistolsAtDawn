@@ -32,9 +32,7 @@ public class DragObject : MonoBehaviour
 
 	void OnMouseDown() 
 	{
-		Debug.Log ("a");
 		startDragging ();
-		//setCenterAnchor ();
 	}
 	void startDragging()
 	{

@@ -16,7 +16,7 @@ public class CleanBarrelGame : Minigame
 	public override void startGame()
 	{
 		// Populate are with random objects
-		Random.Range
+		//Random.Range
 
 
 		base.startGame ();

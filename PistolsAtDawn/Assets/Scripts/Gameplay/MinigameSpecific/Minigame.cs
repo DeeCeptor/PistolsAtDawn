@@ -24,7 +24,7 @@ public class Minigame : MonoBehaviour {
 	{
 		controller.currentlyPlayingMinigame = null;
 		controller.setMinigameUnavailable (this.gameObject.name);
-		GameObject.Find("Hand").GetComponent<Hand>().stop
+		GameObject.Find ("Hand").GetComponent<Hand> ().StopDragging ();
 		//this.gameObject.SetActive (false);
 	}
 

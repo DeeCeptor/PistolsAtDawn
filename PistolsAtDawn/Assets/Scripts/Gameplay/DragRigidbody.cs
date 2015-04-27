@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+// Works in 3D, not 2D due to 3D ray tracing calls
 namespace UnityStandardAssets.Utility
 {
     public class DragRigidbody : MonoBehaviour
@@ -28,13 +29,13 @@ namespace UnityStandardAssets.Utility
 
             // We need to actually hit an object
             RaycastHit hit = new RaycastHit();
-            if (
-                !Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition).origin,
-                                 mainCamera.ScreenPointToRay(Input.mousePosition).direction, out hit, 100,
-                                 Physics.DefaultRaycastLayers))
+            if (!Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition).origin,
+                 mainCamera.ScreenPointToRay(Input.mousePosition).direction, out hit, 100,
+                 Physics.DefaultRaycastLayers))
             {
                 return;
             }
+			Debug.Log(hit.collider.gameObject.name);
             // We need to hit a rigidbody that is not kinematic
             if (!hit.rigidbody || hit.rigidbody.isKinematic)
             {
