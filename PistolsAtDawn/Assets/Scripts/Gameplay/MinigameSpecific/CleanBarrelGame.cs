@@ -35,7 +35,6 @@ public class CleanBarrelGame : Minigame
 		if (other.gameObject.tag == "Debris") 
 		{
 			objectsRemaining--;
-			Debug.Log(objectsRemaining);
 			Destroy (other.gameObject);
 
 			// End minigame if all objects have been removed from barrel

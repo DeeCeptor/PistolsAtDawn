@@ -8,14 +8,22 @@ public class MinigameController : MonoBehaviour
 	public List<GameObject> minigames;	// Actual minigame objects
 
 	[HideInInspector]
-	public GameObject curMinigame;
+	public GameObject currentlyPlayingMinigame;
 
 	public List<GameObject> availableMinigames;		// Minigame icons
 	public List<GameObject> unavailableMinigames;
 
-	public GameObject currentlyPlayingMinigame;
 
-	// Use this for initialization
+
+
+	// Finding items
+	public int numBulletsfound = 0;
+	public bool paperFound, powderFound, stringFound, matchFound, alcoholFound = false;
+
+	// Preparing gun for firing
+	public bool barrelCleaned, stringCut, powderInPan, bulletInBarrel, powderInBarrel, matchLit = false;
+
+
 	void Start () 
 	{
 		// Hide all minigames off the bat
