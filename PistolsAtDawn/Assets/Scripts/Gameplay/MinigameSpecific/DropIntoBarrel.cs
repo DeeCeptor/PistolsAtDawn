@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DropIntoBarrel : Minigame {
+public class DropIntoBarrel : Minigame 
+{
+	private bool bulletIn;
+
 
 	void Start () {
 	
+	}
+	void Update () {
+		
 	}
 
 
 	public override void startGame()
 	{
-		Debug.Log ("Clean");
 		base.startGame ();
 	}
 	
@@ -21,23 +26,21 @@ public class DropIntoBarrel : Minigame {
 	}
 
 
-	void Update () {
-	
-	}
-
-
 	void OnTriggerEnter2D(Collider2D other) 
 	{
 		if (other.gameObject.tag == "Bullet") 
 		{
 			Debug.Log("Bullet put in barrel");
-			other.gameObject.GetComponent<DragObject>().stopDragging();
+			controller.numBulletsfound--;
+			controller.bulletInBarrel = true;
 			Destroy (other.gameObject);
 		}
-		else if (other.gameObject.tag == "Powder") 
+		else if (other.gameObject.tag == "Paper" && controller.bulletInBarrel) 
 		{
-			Debug.Log("Powder in barrel");
+			Debug.Log("Paper in barrel");
+			controller.paperInBarrel = true;
 			Destroy (other.gameObject);
+			this.endGame();
 		}
 	}
 }

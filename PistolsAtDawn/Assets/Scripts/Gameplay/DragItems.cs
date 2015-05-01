@@ -15,7 +15,7 @@ public class DragItems : MonoBehaviour
 	public float angularDrag = 30.0f;	// Resistance to rotation
 	
 	public bool attachToCenterOfMass = false;
-	public LayerMask mask;
+	public LayerMask mask = -1;
 	private SpringJoint2D springJoint;
 	private Camera mainCamera;
 	

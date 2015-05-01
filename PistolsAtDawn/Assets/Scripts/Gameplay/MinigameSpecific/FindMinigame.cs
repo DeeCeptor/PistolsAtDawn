@@ -38,26 +38,29 @@ public class FindMinigame : Minigame
 		{
 			Destroy (other.gameObject);
 			controller.stringFound = true;
-			controller.setMinigameAvailable ("CutString");
 		}
 		else if (other.gameObject.tag == "Match") 
 		{
 			Destroy (other.gameObject);
 			controller.stringFound = true;
-			controller.setMinigameAvailable ("LightMatch");
 		}
-		else if (other.gameObject.tag == "Powder") 
+		else if (other.gameObject.tag == "Flask") 
 		{
 			Destroy (other.gameObject);
 			controller.powderFound = true;
-			controller.setMinigameAvailable ("PowderPan");
-			controller.setMinigameAvailable ("PowderBarrel");
 		}
 		else if (other.gameObject.tag == "Alcohol") 
 		{
 			Destroy (other.gameObject);
 			controller.alcoholFound = true;
-			controller.setMinigameAvailable ("Alcohol");
 		}
+		else if (other.gameObject.tag == "Paper") 
+		{
+			Destroy (other.gameObject);
+			controller.paperFound = true;
+			loadBarrelCheck();
+		}
+
+		controller.minigameChecklist ();
 	}
 }

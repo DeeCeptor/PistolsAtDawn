@@ -1,36 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Minigame : MonoBehaviour {
-
-	protected MinigameController controller;
+public class Minigame : MonoBehaviour 
+{
+	[HideInInspector]
+	public MinigameController controller;
 
 	void Start () 
 	{
-
+		controller = GameObject.Find ("MainView").transform.FindChild("MinigameController").GetComponent<MinigameController> ();
 	}
 
 
 	public virtual void startGame()
 	{
-		Debug.Log ("Start minigame");
 		controller = GameObject.Find ("MainView").transform.FindChild("MinigameController").GetComponent<MinigameController> ();
+		Debug.Log (this.name + " " + controller.name);
 		controller.currentlyPlayingMinigame = this.gameObject;
-		//controller.setMinigameUnavailable (this.gameObject);
+		controller.hideIcons ();
+		controller.playingGame = true;
 	}
 
 
 	public virtual void endGame()
 	{
-		controller.currentlyPlayingMinigame = null;
+		controller.showIcons ();
+		controller.minigameChecklist ();	// Add new minigames based on requirements
+		controller.playingGame = false;
 		controller.setMinigameUnavailable (this.gameObject.name);
-		GameObject.Find ("Hand").GetComponent<Hand> ().StopDragging ();
-		//this.gameObject.SetActive (false);
-	}
-
-
-	void Update () 
-	{
-	
 	}
 }

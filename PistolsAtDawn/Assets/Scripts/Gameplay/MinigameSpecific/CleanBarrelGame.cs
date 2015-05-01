@@ -25,7 +25,7 @@ public class CleanBarrelGame : Minigame
 
 	public override void endGame()
 	{
-		controller.setMinigameAvailable ("InsertIntoBarrel");
+		controller.barrelCleaned = true;
 		base.endGame ();
 	}
 
