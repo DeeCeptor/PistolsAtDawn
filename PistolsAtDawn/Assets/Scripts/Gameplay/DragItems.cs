@@ -32,7 +32,7 @@ public class DragItems : MonoBehaviour
 		
 		RaycastHit2D hit = Physics2D.Raycast (mainCamera.ScreenToWorldPoint (Input.mousePosition), Vector2.zero, Mathf.Infinity, mask);
 
-		if (!hit.rigidbody || (hit.collider != null && hit.rigidbody.isKinematic == true) ) 
+		if (!hit.rigidbody || (hit.collider != null && hit.rigidbody.isKinematic == true)) 
 			return;
 
 		//if (hit.collider != null && hit.rigidbody.isKinematic == false) 
