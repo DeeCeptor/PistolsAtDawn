@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PowderParticle : MonoBehaviour 
+public class RemoveAfter : MonoBehaviour 
 {
 	float removeAfter = 2f;	// Despawn particle after removeAfter seconds
 	float numSecondsAlive = 0;	// How long particle's been alive

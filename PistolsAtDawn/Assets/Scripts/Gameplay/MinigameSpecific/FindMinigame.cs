@@ -20,8 +20,14 @@ public class FindMinigame : Minigame
 	{
 		if (controller.numBulletsfound > 0 && 
 			controller.paperFound &&
-			controller.powderFound)
-			controller.setMinigameAvailable ("InsertIntoBarrel");
+			controller.powderFound &&
+		    controller.stringFound &&
+		    controller.alcoholFound &&
+		    controller.matchFound)
+		{
+			Debug.Log("All items found");
+			this.endGame();
+		}
 	}
 
 
@@ -29,10 +35,8 @@ public class FindMinigame : Minigame
 	{
 		if (other.gameObject.tag == "Bullet") 
 		{
-			//other.gameObject.GetComponent<DragObject>().stopDragging();
 			Destroy (other.gameObject);
 			controller.numBulletsfound++;
-			loadBarrelCheck();
 		}
 		else if (other.gameObject.tag == "String") 
 		{
@@ -42,7 +46,7 @@ public class FindMinigame : Minigame
 		else if (other.gameObject.tag == "Match") 
 		{
 			Destroy (other.gameObject);
-			controller.stringFound = true;
+			controller.matchFound = true;
 		}
 		else if (other.gameObject.tag == "Flask") 
 		{
@@ -58,9 +62,8 @@ public class FindMinigame : Minigame
 		{
 			Destroy (other.gameObject);
 			controller.paperFound = true;
-			loadBarrelCheck();
 		}
 
-		controller.minigameChecklist ();
+		loadBarrelCheck();
 	}
 }

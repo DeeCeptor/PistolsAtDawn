@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LightString : Minigame 
+public class ShootEnemy : Minigame 
 {
-
-
+	void Start () 
+	{
+	
+	}
 	void Update () 
 	{
 	
 	}
+
 
 	public override void startGame()
 	{
@@ -18,7 +21,10 @@ public class LightString : Minigame
 	
 	public override void endGame()
 	{
-		controller.stringLit = true;
+		controller.shotFired = true;
 		base.endGame ();
 	}
+
+
+
 }

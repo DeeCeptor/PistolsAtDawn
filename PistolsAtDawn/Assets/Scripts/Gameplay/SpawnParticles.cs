@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpawnPowderParticles : MonoBehaviour 
+public class SpawnParticles : MonoBehaviour 
 {
-	public GameObject powderPrefab;		// Drag prefab here
-	float curDelay = 0;
-	float spawnDelay = 0.05f;	//Spawn a powder particle every spawnDelay seconds
+	public GameObject prefab;		// Drag prefab here
+	public float spawnDelay = 0.05f;	//Spawn a powder particle every spawnDelay seconds
+	private float curDelay = 0;
 
 	void Start () 
 	{
@@ -20,7 +20,7 @@ public class SpawnPowderParticles : MonoBehaviour
 		{
 			// Time to spawn new particle
 			curDelay = 0;
-			Instantiate (powderPrefab, new Vector3(this.transform.position.x, 
+			Instantiate (prefab, new Vector3(this.transform.position.x, 
 			                                       this.transform.position.y,
 			                                       0),
 			             						   Quaternion.identity);

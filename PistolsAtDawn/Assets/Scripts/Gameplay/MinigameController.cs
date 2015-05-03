@@ -10,17 +10,17 @@ public class MinigameController : MonoBehaviour
 	[HideInInspector]
 	public bool playingGame = false;
 	public GameObject currentlyPlayingMinigame;
+	public bool hasGun = true;		// Orphans steal your gun. Can't play minigames when gun is stolen
 	private GameObject allIcons;
 	private GameObject allMinigames;
 
 	public List<GameObject> availableMinigameIcons;		// Minigame icons
 	public List<GameObject> unavailableMinigameIcons;
 
-
-
-
+	
 	// Finding items
 	public int numBulletsfound = 0;
+	public int alcoholLevel = 0;
 	public bool paperFound, powderFound, stringFound, matchFound, alcoholFound = false;
 
 	// Preparing gun for firing
@@ -124,7 +124,7 @@ public class MinigameController : MonoBehaviour
 	
 
 	// Hides the current minigame, and shows minigame icons
-	void abortGame()
+	public void abortGame()
 	{
 		if (playingGame) 
 		{
