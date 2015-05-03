@@ -22,6 +22,7 @@ public class LightMatch : Minigame
 	
 	public override void endGame()
 	{
+		Debug.Log("Match lit");
 		controller.matchLit = true;
 		base.endGame ();
 	}

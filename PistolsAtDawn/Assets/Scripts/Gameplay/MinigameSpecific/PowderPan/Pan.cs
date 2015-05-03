@@ -37,7 +37,7 @@ public class Pan : MonoBehaviour
 
 	void OnCollisionEnter2D(Collision2D other) 
 	{
-		if (other.gameObject.tag == "Powder") 
+		if (other.gameObject.tag == "Powder" && panScript.panOpen) 
 		{
 			Debug.Log("Powder put in barrel");
 			panScript.powderEnteredPan();

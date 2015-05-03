@@ -50,7 +50,7 @@ public class MoveMatch : MonoBehaviour
 		if(isMousePressed)        
 		{            
 			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);             
-			mousePos.z = 0;
+			mousePos.z = -1;
 			this.gameObject.transform.position = mousePos;
 			if (!pointsList.Contains (mousePos))              
 			{                
@@ -75,7 +75,6 @@ public class MoveMatch : MonoBehaviour
 
 	void OnMouseDown()
 	{
-		Debug.Log ("aa");
 		resetLine ();
 		isMousePressed = true;
 	}

@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShakeGun : MonoBehaviour {
+public class ShakeGun : MonoBehaviour 
+{
+	Shake script;
 
 	void Start () 
 	{
 		startPos = transform.position;
+		script = GameObject.Find("Shake").GetComponent<Shake>();
 	}
 
 
@@ -31,6 +34,7 @@ public class ShakeGun : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space)) 
 		{
 			speed += 0.5f;
+			script.SpacePressed();
 		}
 	}
 }

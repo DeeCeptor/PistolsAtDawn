@@ -24,36 +24,38 @@ public class MinigameController : MonoBehaviour
 	public bool paperFound, powderFound, stringFound, matchFound, alcoholFound = false;
 
 	// Preparing gun for firing
-	public bool barrelCleaned, stringCut, powderInPan, bulletInBarrel, paperInBarrel, 
+	public bool shaken, barrelCleaned, stringCut, powderInPan, bulletInBarrel, paperInBarrel, 
 		powderInBarrel, ramrodBarrel, threadString, matchLit, stringLit, cockHammer, shotFired = false;
 
 
 	// Checks requirements for all minigames and makes minigames available. Called at the end of every minigame.
 	public void minigameChecklist()
 	{
-		if (numBulletsfound <= 0 || !paperFound || !powderFound || !stringFound || !matchFound || !alcoholFound)
+		if ((numBulletsfound <= 0 && !bulletInBarrel) || !paperFound || !powderFound || !stringFound || !matchFound || !alcoholFound)
 			setMinigameAvailable ("Find");
-		if (!barrelCleaned)
+		if (!shaken)
+			setMinigameAvailable("Shake");
+		if (!barrelCleaned && shaken)
 			setMinigameAvailable ("CleanBarrel");
 		if (!stringCut && stringFound)
 			setMinigameAvailable ("CutString");
 		if (!powderInPan && powderFound)
 			setMinigameAvailable ("PowderPan");
-		if (!powderInBarrel && powderFound)
+		if (!powderInBarrel && powderFound && barrelCleaned)
 			setMinigameAvailable ("PowderBarrel");
-		if (!bulletInBarrel && !paperInBarrel && powderInBarrel && numBulletsfound > 0 && paperFound)
+		if (!bulletInBarrel && barrelCleaned && !paperInBarrel && powderInBarrel && numBulletsfound > 0 && paperFound)
 			setMinigameAvailable ("InsertIntoBarrel");
 		if (!threadString && stringCut)
 			setMinigameAvailable ("ThreadString");
 		if (!ramrodBarrel && bulletInBarrel && paperInBarrel && powderInBarrel)
 			setMinigameAvailable ("RamrodBarrel");
-		if (!matchLit && threadString)
+		if (!matchLit && threadString && ramrodBarrel)
 			setMinigameAvailable ("LightMatch");
 		if (!stringLit && matchLit)
 			setMinigameAvailable ("LightString");
 		if (!cockHammer && stringLit)
 			setMinigameAvailable ("CockHammer");
-		if (!shotFired && cockHammer)
+		if (!shotFired && cockHammer && ramrodBarrel && powderInPan && stringLit)
 			setMinigameAvailable ("ShootEnemy");
 	}
 
@@ -66,18 +68,26 @@ public class MinigameController : MonoBehaviour
 		// Hide all minigames off the bat
 		foreach (GameObject go in minigames) 
 		{
-			go.SetActive(false);
+			//go.SetActive(false);
 		}
 		// Hide unavailable minigames
 		foreach (GameObject go in unavailableMinigameIcons) 
 		{
-			go.SetActive(false);
+			//go.SetActive(false);
 		}
 		// Display available minigame icons
 		foreach (GameObject go in availableMinigameIcons) 
 		{
-			go.SetActive(true);
+			//go.SetActive(true);
 		}
+
+		foreach( Transform child in allIcons.transform )
+		{
+			Debug.Log(child.name);
+			child.gameObject.SetActive(false);
+		}
+
+		minigameChecklist();
 	}
 
 
@@ -101,8 +111,6 @@ public class MinigameController : MonoBehaviour
 	}
 	public void setMinigameUnavailable(string name)
 	{
-		Debug.Log ("unavailable " + name);
-
 		// Remove icon from list and make it inactive
 		GameObject icon = allIcons.transform.FindChild (name).gameObject;
 		availableMinigameIcons.Remove (icon);
