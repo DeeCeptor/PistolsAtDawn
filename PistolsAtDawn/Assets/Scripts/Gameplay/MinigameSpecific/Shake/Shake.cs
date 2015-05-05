@@ -4,7 +4,7 @@ using System.Collections;
 public class Shake : Minigame 
 {
 	int numTimesSpacePressed = 0;
-	int threshold = 20;
+	int threshold = 2;
 	float tickTime = 0.5f;
 	float curTime;
 	
@@ -48,10 +48,18 @@ public class Shake : Minigame
 		}
 	}
 
+	public int getNumTimesPressed()
+	{
+		return numTimesSpacePressed;
+	}
+
 
 	void OnGUI()
 	{
 		GUI.contentColor = Color.black;
 		GUI.Label(new Rect(10, 10, 200, 100), numTimesSpacePressed + " / " + threshold);
 	}
+
+
+
 }

@@ -3,9 +3,15 @@ using System.Collections;
 
 public class Debris : MonoBehaviour {
 
+	//Array containing potential individual sprites
+	//this would be better in some sort of debris controller that also instantiates prefabs
+	public Sprite[] debrisSprites;
+
 	void Start () 
 	{
-	
+		//declare a random sprite from a set
+		int spriteRandomizer = Random.Range (1, debrisSprites.Length);
+		GetComponent<SpriteRenderer> ().sprite = debrisSprites [spriteRandomizer];
 	}
 	
 	void Update () 
