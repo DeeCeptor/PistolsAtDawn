@@ -28,7 +28,7 @@ public class MoveMatch : MonoBehaviour
 		line.SetColors(Color.green, Color.green);         
 		line.useWorldSpace = true;            
 		isMousePressed = false;        
-		pointsList = new List<Vector3>();    
+		pointsList = new List<Vector3>();
 	}    
 
 
@@ -154,7 +154,9 @@ public class MoveMatch : MonoBehaviour
 			resetLine();
 			isMousePressed = false;
 
-			minigame.GetComponent<LightMatch>().endGame();
+			minigame.GetComponent<LightMatch>().lightMatch();
+			minigame.GetComponent<LightMatch>().Invoke("endGame",1);
+			//minigame.GetComponent<LightMatch>().endGame();
 		}
 	}
 }

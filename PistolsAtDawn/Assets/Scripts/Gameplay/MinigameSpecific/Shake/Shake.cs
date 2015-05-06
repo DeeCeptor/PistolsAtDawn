@@ -4,7 +4,7 @@ using System.Collections;
 public class Shake : Minigame 
 {
 	int numTimesSpacePressed = 0;
-	int threshold = 2;
+	int threshold = 20;
 	float tickTime = 0.5f;
 	float curTime;
 	

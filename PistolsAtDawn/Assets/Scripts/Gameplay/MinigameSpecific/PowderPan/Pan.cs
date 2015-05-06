@@ -24,13 +24,16 @@ public class Pan : MonoBehaviour
 		{	
 			Debug.Log ("Pan Opened");
 			panScript.panOpen = true;
+			this.transform.Translate(0.1f, 0.3f, 0f);
 			this.transform.Rotate(0, 0, 90);	// Change animation to show open pan
+
 		}
 		else 
 		{
 			Debug.Log("Pan closed");
 			panScript.panOpen = false;
 			this.transform.Rotate(0, 0, -90);	// Change animation to show closed pan
+			this.transform.Translate(-0.1f, -0.3f, 0f);
 		}
 	}
 

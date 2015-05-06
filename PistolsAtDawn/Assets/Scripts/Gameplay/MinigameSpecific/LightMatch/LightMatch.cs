@@ -3,9 +3,11 @@ using System.Collections;
 
 public class LightMatch : Minigame 
 {
+	GameObject match;
+
 	void Start () 
 	{
-	
+		match = GameObject.Find ("FireSpriteSheet_0");
 	}
 	
 	void Update () 
@@ -25,5 +27,10 @@ public class LightMatch : Minigame
 		Debug.Log("Match lit");
 		controller.matchLit = true;
 		base.endGame ();
+	}
+
+	public void lightMatch()
+	{
+		match.GetComponent<SpriteRenderer> ().enabled = true;
 	}
 }

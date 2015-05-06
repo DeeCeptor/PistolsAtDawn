@@ -19,6 +19,8 @@ public class ClickToCockHammer : MonoBehaviour
 	{
 		Debug.Log("Hammer clicked");
 		this.transform.Rotate(0, 0, 90);	// Rotate hammer to show it's cocked
-		script.endGame();
+		this.transform.Translate (-0.2f, -0.2f, 0);
+		script.Invoke ("endGame", 1);
+		//script.endGame();
 	}
 }
