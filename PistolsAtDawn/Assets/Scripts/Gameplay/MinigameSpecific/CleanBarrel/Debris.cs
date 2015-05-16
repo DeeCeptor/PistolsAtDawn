@@ -10,7 +10,7 @@ public class Debris : MonoBehaviour {
 	void Start () 
 	{
 		//declare a random sprite from a set
-		int spriteRandomizer = Random.Range (1, debrisSprites.Length);
+		int spriteRandomizer = Random.Range (0, debrisSprites.Length - 1);
 		GetComponent<SpriteRenderer> ().sprite = debrisSprites [spriteRandomizer];
 	}
 	

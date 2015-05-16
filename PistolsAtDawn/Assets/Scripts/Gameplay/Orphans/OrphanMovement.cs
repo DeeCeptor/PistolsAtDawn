@@ -6,7 +6,7 @@ public class OrphanMovement : MonoBehaviour
 	MinigameController controller;
 	bool movingLeft = true;
 	Rigidbody2D physics;
-	float speed = 10;
+	float speed = 7f;
 	bool holdingGun = false;
 	bool spinning = false;
 	GameObject gunSprite;

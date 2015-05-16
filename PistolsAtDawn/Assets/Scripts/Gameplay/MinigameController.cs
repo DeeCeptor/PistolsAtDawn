@@ -64,7 +64,7 @@ public class MinigameController : MonoBehaviour
 	{
 		allIcons = GameObject.Find ("MinigameIcons");
 		allMinigames = GameObject.Find ("Minigames");
-
+		//Application.targetFrameRate = 40;
 		// Hide all minigames off the bat
 		foreach (GameObject go in minigames) 
 		{
@@ -83,7 +83,6 @@ public class MinigameController : MonoBehaviour
 
 		foreach( Transform child in allIcons.transform )
 		{
-			Debug.Log(child.name);
 			child.gameObject.SetActive(false);
 		}
 
