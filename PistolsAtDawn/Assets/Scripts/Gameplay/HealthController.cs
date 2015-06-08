@@ -2,18 +2,38 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/**
+ * Controls HP of character and controls wounds and damage.
+ * Wounds have gameObjects with Wound objects
+ * Each wound object has a BulletWound script living in HealthController
+ */ 
 public class HealthController : MonoBehaviour 
 {
 	public float HP = 100;
 	private float maxHP;
 	float woundDamage = 1;
+	public BandagePlayer bandage_game;	// Drag bandage minigame onto this field in the inspector
 
 	LinkedList<BulletWound> all_wounds = new LinkedList<BulletWound>();
+
 
 	void Start () 
 	{
 		maxHP = HP;
+
+		minorlyWoundPlayer();
 	}
+
+
+	public void minorlyWoundPlayer()
+	{
+		GameObject wound_obj = bandage_game.createMinorWound();
+		BulletWound bullet_wound = new BulletWound(5.0f);
+		wound_obj.GetComponent<Wound>().woundController = bullet_wound;
+		bullet_wound.wound_sprite = wound_obj.GetComponent<Wound>();
+		all_wounds.AddFirst(bullet_wound);
+	}
+
 	
 	void Update () 
 	{
@@ -31,11 +51,12 @@ public class HealthController : MonoBehaviour
 			else
 			{
 				// Advance time till bandage comes off
-				wound.timeTillBleedsAgain -= Time.deltaTime;
+				wound.curTimeTillBleedsAgain -= Time.deltaTime;
 
-				if (wound.timeTillBleedsAgain <= 0)
+				if (wound.curTimeTillBleedsAgain <= 0)
 				{
 					// Resume bleeding
+					Debug.Log("bandage came off");
 					wound.startBleeding();
 				}
 			}
