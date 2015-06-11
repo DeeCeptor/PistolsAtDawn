@@ -20,6 +20,7 @@ public class HealthController : MonoBehaviour
 	void Start () 
 	{
 		maxHP = HP;
+		bandage_game.controller = GameObject.Find ("MainView").transform.FindChild("MinigameController").GetComponent<MinigameController> ();
 
 		minorlyWoundPlayer();
 	}
@@ -28,7 +29,7 @@ public class HealthController : MonoBehaviour
 	public void minorlyWoundPlayer()
 	{
 		GameObject wound_obj = bandage_game.createMinorWound();
-		BulletWound bullet_wound = new BulletWound(5.0f);
+		BulletWound bullet_wound = new BulletWound(5.0f, wound_obj.GetComponent<Wound>());
 		wound_obj.GetComponent<Wound>().woundController = bullet_wound;
 		bullet_wound.wound_sprite = wound_obj.GetComponent<Wound>();
 		all_wounds.AddFirst(bullet_wound);

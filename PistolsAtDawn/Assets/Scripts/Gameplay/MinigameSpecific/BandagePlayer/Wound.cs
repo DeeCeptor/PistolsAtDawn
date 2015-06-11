@@ -8,11 +8,13 @@ public class Wound : MonoBehaviour
 {
 	SpriteRenderer sprite;
 	public BulletWound woundController;	// Script controlling this wound
+	BandagePlayer minigame;
 
 
 	void Start () 
 	{
 		sprite = this.GetComponent<SpriteRenderer>();
+		minigame = GameObject.Find("BandagePlayer").GetComponent<BandagePlayer>();
 	}
 
 
@@ -25,7 +27,7 @@ public class Wound : MonoBehaviour
 	public void stopBleeding()
 	{
 		Debug.Log("Wound covered");
-		sprite.enabled = false;
+		this.gameObject.SetActive(false);
 	}
 
 

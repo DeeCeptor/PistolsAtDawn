@@ -31,6 +31,7 @@ public class MinigameController : MonoBehaviour
 	// Checks requirements for all minigames and makes minigames available. Called at the end of every minigame.
 	public void minigameChecklist()
 	{
+		setMinigameAvailable ("BandagePlayer");
 		if ((numBulletsfound <= 0 && !bulletInBarrel) || !paperFound || !powderFound || !stringFound || !matchFound || !alcoholFound)
 			setMinigameAvailable ("Find");
 		if (!shaken)

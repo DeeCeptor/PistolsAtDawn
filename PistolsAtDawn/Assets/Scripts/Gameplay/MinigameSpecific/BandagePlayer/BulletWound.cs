@@ -12,10 +12,11 @@ public class BulletWound
 	public Wound wound_sprite;
 
 
-	public BulletWound(float timeTillBandageFallsOff)
+	public BulletWound(float timeTillBandageFallsOff, Wound wound)
 	{
 		curTimeTillBleedsAgain = timeTillBandageFallsOff;
 		timeTillBleedsAgain = timeTillBandageFallsOff;
+		wound_sprite = wound;
 		startBleeding();
 	}
 
@@ -23,6 +24,7 @@ public class BulletWound
 	public void startBleeding()
 	{
 		bleeding = true;
+		wound_sprite.gameObject.SetActive(true);
 	}
 	public void stopBleeding()
 	{

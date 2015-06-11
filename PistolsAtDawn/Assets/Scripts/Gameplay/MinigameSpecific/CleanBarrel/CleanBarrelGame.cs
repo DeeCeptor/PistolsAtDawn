@@ -37,9 +37,10 @@ public class CleanBarrelGame : Minigame
 		// Populate area with random objects
 		for (int x = 1; x <= numDebris; x++)
 		{
-			Instantiate(debris, new Vector3(Random.Range(topLeftRegion.transform.position.x, bottomRightRegion.transform.position.x), 
+			GameObject obj = (GameObject) Instantiate(debris, new Vector3(Random.Range(topLeftRegion.transform.position.x, bottomRightRegion.transform.position.x), 
 			                           Random.Range(topLeftRegion.transform.position.y, bottomRightRegion.transform.position.y), 0), 
 			            Quaternion.identity);
+			obj.transform.parent = this.transform;
 		}
 
 

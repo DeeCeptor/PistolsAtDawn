@@ -22,7 +22,7 @@ public class Debris : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other) 
 	{
 		// If ramrod touches the debris, turn on gravity
-		if (other.gameObject.tag == "Ramrod") 
+		if (other.gameObject.tag == "Ramrod" || (other.gameObject.layer != LayerMask.NameToLayer("Table") && other.gameObject.GetComponent<Rigidbody2D>().isKinematic == false)) 
 		{
 			this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
 		}
