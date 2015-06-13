@@ -67,7 +67,15 @@ public class HealthController : MonoBehaviour
 		if (HP <= 0)
 		{
 			Debug.Log("HP < 0, BLED OUT!");
+			Die ();
 		}
+	}
+
+
+	//Wil William, place dying cutscene code here
+	public void Die()
+	{
+
 	}
 
 

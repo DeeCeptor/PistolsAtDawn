@@ -17,7 +17,7 @@ public class BandagePlayer : Minigame
 	public GameObject createMinorWound()
 	{
 		GameObject obj = (GameObject) Instantiate(wound_to_spawn, new Vector3(Random.Range(topLeftRegion.transform.position.x, bottomRightRegion.transform.position.x), 
-		                                        Random.Range(topLeftRegion.transform.position.y, bottomRightRegion.transform.position.y), 0), 
+		                                        Random.Range(topLeftRegion.transform.position.y, bottomRightRegion.transform.position.y), -1), 
 		            							Quaternion.identity);
 		obj.transform.parent = this.transform;
 		controller.setMinigameAvailable ("BandagePlayer");	// Make minigame available since there's a wound to fix

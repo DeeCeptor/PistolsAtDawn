@@ -17,7 +17,9 @@ public class IconClicked : MonoBehaviour
 	void OnMouseDown()
 	{
 		// Start minigame
+		minigames = GameObject.Find ("Minigames");
 		GameObject go = minigames.transform.FindChild (this.name).gameObject;
+		game = go.GetComponent<Minigame>();
 		go.SetActive (true);
 		game.startGame ();
 	}

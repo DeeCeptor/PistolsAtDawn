@@ -15,7 +15,7 @@ public class Minigame : MonoBehaviour
 	public virtual void startGame()
 	{
 		controller = GameObject.Find ("MainView").transform.FindChild("MinigameController").GetComponent<MinigameController> ();
-		Debug.Log (this.name + " " + controller.name);
+		//Debug.Log (this.name + " " + controller.name);
 		controller.currentlyPlayingMinigame = this.gameObject;
 		controller.hideIcons ();
 		controller.playingGame = true;

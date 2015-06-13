@@ -20,10 +20,14 @@ public class GunShoot : MonoBehaviour
 	{
 		// Determine if shot hit
 		RaycastHit2D hit = Physics2D.Raycast (this.transform.position, Vector2.zero, Mathf.Infinity, -1);
+
 		Debug.Log("Shot " + hit.transform.name);
 		if (hit.transform.tag == "Enemy")
 		{
-			script.endGame();
+			// Show enemy being hit
+			Debug.Log("Hit enemy");
 		}
+
+		script.endGame();
 	}
 }

@@ -18,6 +18,18 @@ public class CleanBarrelGame : Minigame
 		shine = GameObject.Find ("CleanShine");
 		translationPosition = shine.transform.position;
 		translationPosition.y = 20.0f; //magic number to represent past top of screen
+
+		objectsRemaining = numDebris;
+		
+		// Populate area with random objects
+		for (int x = 1; x <= numDebris; x++)
+		{
+			GameObject obj = (GameObject) Instantiate(debris, new Vector3(Random.Range(topLeftRegion.transform.position.x, bottomRightRegion.transform.position.x), 
+			                                                              Random.Range(topLeftRegion.transform.position.y, bottomRightRegion.transform.position.y), 0), 
+			                                          Quaternion.identity);
+			obj.transform.parent = this.transform;
+		}
+
 	}
 
 	void Update () {
@@ -32,18 +44,6 @@ public class CleanBarrelGame : Minigame
 
 	public override void startGame()
 	{
-		objectsRemaining = numDebris;
-
-		// Populate area with random objects
-		for (int x = 1; x <= numDebris; x++)
-		{
-			GameObject obj = (GameObject) Instantiate(debris, new Vector3(Random.Range(topLeftRegion.transform.position.x, bottomRightRegion.transform.position.x), 
-			                           Random.Range(topLeftRegion.transform.position.y, bottomRightRegion.transform.position.y), 0), 
-			            Quaternion.identity);
-			obj.transform.parent = this.transform;
-		}
-
-
 		base.startGame ();
 	}
 

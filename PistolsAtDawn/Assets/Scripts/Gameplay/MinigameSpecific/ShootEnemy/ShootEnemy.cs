@@ -22,6 +22,7 @@ public class ShootEnemy : Minigame
 	public override void endGame()
 	{
 		controller.shotFired = true;
+		controller.afterShot();
 		base.endGame ();
 	}
 
