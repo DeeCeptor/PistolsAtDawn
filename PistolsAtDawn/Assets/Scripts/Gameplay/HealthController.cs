@@ -9,6 +9,7 @@ using System.Collections.Generic;
  */ 
 public class HealthController : MonoBehaviour 
 {
+	public static HealthController health_controller;
 	public float HP = 100;
 	private float maxHP;
 	float woundDamage = 1;
@@ -19,10 +20,9 @@ public class HealthController : MonoBehaviour
 
 	void Start () 
 	{
+		health_controller = this;
 		maxHP = HP;
 		bandage_game.controller = GameObject.Find ("MainView").transform.FindChild("MinigameController").GetComponent<MinigameController> ();
-
-		minorlyWoundPlayer();
 	}
 
 

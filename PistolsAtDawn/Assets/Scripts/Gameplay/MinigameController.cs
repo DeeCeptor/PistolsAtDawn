@@ -5,6 +5,7 @@ using UnityEditor;
 
 public class MinigameController : MonoBehaviour
 {
+	public static MinigameController minigame_controller;
 	public List<GameObject> minigames;	// Actual minigame objects
 
 	[HideInInspector]
@@ -105,6 +106,8 @@ public class MinigameController : MonoBehaviour
 
 	void Start () 
 	{
+		minigame_controller = this;
+
 		allIcons = GameObject.Find ("MinigameIcons");
 		allMinigames = GameObject.Find ("Minigames");
 
