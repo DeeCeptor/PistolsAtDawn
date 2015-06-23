@@ -11,6 +11,7 @@ public class HealthController : MonoBehaviour
 {
 	public static HealthController health_controller;
 	public float HP = 100;
+	public float time_till_bandages_come_off = 15;
 	private float maxHP;
 	float woundDamage = 1;
 	public BandagePlayer bandage_game;	// Drag bandage minigame onto this field in the inspector
@@ -29,7 +30,7 @@ public class HealthController : MonoBehaviour
 	public void minorlyWoundPlayer()
 	{
 		GameObject wound_obj = bandage_game.createMinorWound();
-		BulletWound bullet_wound = new BulletWound(5.0f, wound_obj.GetComponent<Wound>());
+		BulletWound bullet_wound = new BulletWound(time_till_bandages_come_off, wound_obj.GetComponent<Wound>());
 		wound_obj.GetComponent<Wound>().woundController = bullet_wound;
 		bullet_wound.wound_sprite = wound_obj.GetComponent<Wound>();
 		all_wounds.AddFirst(bullet_wound);
@@ -45,14 +46,14 @@ public class HealthController : MonoBehaviour
 			{
 				// Apply damage if bleeding
 				if (wound.majorWound)
-					HP -= woundDamage * 2 * Time.deltaTime;	// Take double damage from major wounds
+					HP -= woundDamage * 2 * Time.deltaTime * Time.timeScale * PauseController.pause.pause_time;	// Take double damage from major wounds
 				else
-					HP -= woundDamage * Time.deltaTime;
+					HP -= woundDamage * Time.deltaTime * PauseController.pause.pause_time;
 			}
 			else
 			{
 				// Advance time till bandage comes off
-				wound.curTimeTillBleedsAgain -= Time.deltaTime;
+				wound.curTimeTillBleedsAgain -= Time.deltaTime * Time.timeScale * PauseController.pause.pause_time;
 
 				if (wound.curTimeTillBleedsAgain <= 0)
 				{

@@ -21,7 +21,7 @@ public class Dodge_Shot : MonoBehaviour
 	void Update () 
 	{
 		// Check if we dodged the enemy shot
-		if (Input.GetKey(dodge_key))
+		if (PauseController.pause.pause_time != 0 && Input.GetKey(dodge_key))
 		{
 			// Player dodged the shot. play cutscene or just remove this object
 			Debug.Log(dodge_key + " pressed, shot dodged");
@@ -29,7 +29,7 @@ public class Dodge_Shot : MonoBehaviour
 			Destroy (this.gameObject);
 		}
 
-		time_till_shot -= Time.deltaTime * Time.timeScale;
+		time_till_shot -= Time.deltaTime * Time.timeScale * PauseController.pause.pause_time;
 		if (time_till_shot <= 0)
 		{
 			// Player did not dodge in time, they are shot by enemy.
