@@ -6,7 +6,7 @@ public class PauseController : MonoBehaviour
 {
 	public static PauseController pause;
 	public float pause_time = 1;	// 1 if unpaused, 0 if paused. Multiplied by all things that execute on timers in update.
-	bool paused = false;
+	public bool paused = false;
 	GameObject text;
 
 

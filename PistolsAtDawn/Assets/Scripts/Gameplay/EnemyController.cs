@@ -33,6 +33,16 @@ public class EnemyController : MonoBehaviour
 
 
 	/**
+	 * Changes the amount of time needed to fire the current shot. 
+	 * Amount is in seconds. Can be positive or negative. A negative amount of time speeds up the reloading process.
+	 */ 
+	public void alterCurrentLoadTime(float amount)
+	{
+		shot_counter += (-amount);
+	}
+
+
+	/**
 	 * Spawns a warning object, that allows the player to dodge the upcoming shot
 	 * if they press the correct key.
 	 */ 

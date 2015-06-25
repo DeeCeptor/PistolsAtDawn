@@ -75,6 +75,7 @@ public class MinigameController : MonoBehaviour
 	public void minigameChecklist()
 	{
 		setMinigameAvailable ("BandagePlayer");
+		setMinigameAvailable ("Insult");
 		if ((numBulletsfound <= 0 && !bulletInBarrel) || !paperFound || !powderFound || !stringFound || !matchFound || !alcoholFound)
 			setMinigameAvailable ("Find");
 		if (!shaken)
@@ -185,7 +186,7 @@ public class MinigameController : MonoBehaviour
 
 	void Update () 
 	{
-		if (playingGame && Input.GetKeyDown (KeyCode.Escape)) 
+		if (playingGame && Input.GetKeyDown (KeyCode.Tab)) 
 		{
 			abortGame();
 		}
