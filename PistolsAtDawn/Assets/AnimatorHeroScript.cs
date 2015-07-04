@@ -17,12 +17,14 @@ public class AnimatorHeroScript : MonoBehaviour {
 
 		//Use changeTo 'animation' to change to that animation,
 		//bear in mind the invoke that occurs a bit below
+/*
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			changeToNoGun();
 		}
 		if (Input.GetKeyDown (KeyCode.LeftShift)) {
 			changeToHit();
 		}
+
 
 		//**IMPORTANT**
 		//Notice here that you will need to tell the animator to
@@ -31,7 +33,7 @@ public class AnimatorHeroScript : MonoBehaviour {
 		if(Input.GetKeyUp(KeyCode.Space)){
 			Invoke ("returnInvoke", 0.1f);
 		}
-
+*/
 		//anim.SetInteger ("AnimInt", 0);
 	}
 
